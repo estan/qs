@@ -1,0 +1,9 @@
+language: cpp
+
+compiler:
+ - gcc
+ - clang
+
+script:
+ - make
+ - while read N p1 p2; do if [[ $(echo $N | ./factor | sort) != $(echo -e "$p1\n$p2\n" | sort) ]]; then exit 1; fi; done < data/test50bits.in
