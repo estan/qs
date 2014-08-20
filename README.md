@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/estan/qs.svg?branch=master)](https://travis-ci.org/estan/qs)
+
 Quadratic Sieve Implementation in C++
 =====================================
 
