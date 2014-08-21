@@ -17,5 +17,20 @@ fermat.o: fermat.cpp fermat.h
 qs.o: qs.cpp qs.h matrix.h
 	$(CXX) -c $(CXXFLAGS) -o qs.o qs.cpp
 
+test: test-50bits test-55bits test-60bits test-65bits test-70bits test-75bits \
+	test-80bits test-85bits test-90bits test-95bits test-100bits
+
+test-%: factor
+	@echo running tests in data/test$*.in
+	@while read N p q; do \
+		actual=$$(echo $$N | ./factor | sort); \
+		expected=$$(echo -e "$$p\n$$q\n" | sort); \
+		if [[ $$actual != $$expected ]]; then \
+		   echo test case $$N $$p $$q in data/test$*.in failed; \
+		   echo expected: $$expected, but got $$actual; \
+		   exit 1; \
+		fi \
+	done < data/test$*.in
+
 clean:
 	-@rm *.o factor 2> /dev/null || true
