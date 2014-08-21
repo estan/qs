@@ -23,11 +23,11 @@ test: test-50bits test-55bits test-60bits test-65bits test-70bits test-75bits \
 test-%: factor
 	@echo running tests in data/test$*.in
 	@while read N p q; do \
-		actual=$$(echo $$N | ./factor | sort); \
-		expected=$$(echo -e "$$p\n$$q\n" | sort); \
-		if [[ $$actual != $$expected ]]; then \
+		actual=$$(printf $$N | ./factor | sort); \
+		expected=$$(printf "$$p\n$$q\n\n" | sort); \
+		if [ "$$actual" != "$$expected" ]; then \
 		   echo test case $$N $$p $$q in data/test$*.in failed; \
-		   echo expected: $$expected, but got $$actual; \
+		   echo expected: \"$$expected\", but got \"$$actual\"; \
 		   exit 1; \
 		fi \
 	done < data/test$*.in
