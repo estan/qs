@@ -201,7 +201,7 @@ mpz_class quadraticSieve(const mpz_class& N) {
     /*
      * Step 2.1
      *
-     * Sieve in through the log approximations in intervals of length INTERVAL_LENGTH
+     * Sieve through the log approximations in intervals of length INTERVAL_LENGTH
      * until we have at least factorBase.size() + 20 B-smooth numbers.
      */
     uint32_t intervalStart = 0;
